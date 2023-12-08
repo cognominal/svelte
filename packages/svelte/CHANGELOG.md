@@ -1,5 +1,13 @@
 # svelte
 
+## 5.0.0-next.23
+
+### Patch Changes
+
+- feat: add `gamepadconnected` and `gamepaddisconnected` events ([#9861](https://github.com/sveltejs/svelte/pull/9861))
+
+- chore: improve each block fast-path heuristic ([#9855](https://github.com/sveltejs/svelte/pull/9855))
+
 ## 5.0.0-next.22
 
 ### Patch Changes

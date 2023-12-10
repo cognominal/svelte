@@ -4,9 +4,12 @@
 	import CodeMirror from '../CodeMirror.svelte';
 	import AstView from './AstView.svelte';
 	import BingoView from './BingoView.svelte';
+	import BingoConciseView from './BingoConciseView.svelte';
 	import CompilerOptions from './CompilerOptions.svelte';
 	import PaneWithPanel from './PaneWithPanel.svelte';
 	import Viewer from './Viewer.svelte';
+	import { SplitPane } from '@rich_harris/svelte-split-pane';
+
 
 	/** @type {string | null} */
 	export let status;
@@ -129,7 +132,14 @@
 	<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'bingo'}>
 		<!-- ast view interacts with the module editor, wait for it first -->
 		{#if $module_editor}
-			<BingoView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+		<SplitPane  min="10%" type="vertical"  priority="max">
+			<section slot="a">
+				<BingoConciseView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+			</section>
+			<section slot="b">
+				<BingoView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+			</section>
+		</SplitPane>
 		{/if}
 	</div>
 {/if}

@@ -56,7 +56,7 @@
 	 * @reutrn {boolean}
 	 */
 function filtered_out_key(k) {
-	return k === 'start' || k === 'end' || k === 'loc';
+	return k === 'start' || k === 'end' || k === 'loc' || k === 'type';
 }
 
 	/**

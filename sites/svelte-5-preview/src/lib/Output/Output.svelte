@@ -3,6 +3,7 @@
 	import { marked } from 'marked';
 	import CodeMirror from '../CodeMirror.svelte';
 	import AstView from './AstView.svelte';
+	import BingoView from './BingoView.svelte';
 	import CompilerOptions from './CompilerOptions.svelte';
 	import PaneWithPanel from './PaneWithPanel.svelte';
 	import Viewer from './Viewer.svelte';
@@ -34,6 +35,8 @@
 	/** @type {import('../workers/workers').CompileMessageData | null} */
 	export let compiled;
 
+	let showBingo = true;
+
 	$: if (selected) {
 		if (selected.type === 'json') {
 			js_editor.set({ code: `/* Select a component to see its compiled code */`, lang: 'js' });
@@ -54,7 +57,7 @@
 	/** @type {CodeMirror} */
 	let css_editor;
 
-	/** @type {'result' | 'js' | 'css' | 'ast'} */
+	/** @type {'result' | 'js' | 'css' | 'ast' | 'bingo'} */
 	let view = 'result';
 	let markdown = '';
 
@@ -70,6 +73,9 @@
 		<button class:active={view === 'css'} on:click={() => (view = 'css')}>CSS output</button>
 		{#if showAst}
 			<button class:active={view === 'ast'} on:click={() => (view = 'ast')}>AST output</button>
+		{/if}
+		{#if showBingo}
+			<button class:active={view === 'bingo'} on:click={() => (view = 'bingo')}>Bingo</button>
 		{/if}
 	{/if}
 </div>
@@ -114,6 +120,16 @@
 		<!-- ast view interacts with the module editor, wait for it first -->
 		{#if $module_editor}
 			<AstView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+		{/if}
+	</div>
+{/if}
+<!-- bingo output -->
+{#if BingoView && ast}
+	<!-- <h3>bingo</h3> -->
+	<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'bingo'}>
+		<!-- ast view interacts with the module editor, wait for it first -->
+		{#if $module_editor}
+			<BingoView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
 		{/if}
 	</div>
 {/if}

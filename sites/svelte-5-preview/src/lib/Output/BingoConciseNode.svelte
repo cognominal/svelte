@@ -82,6 +82,46 @@
 	}
 
 	/**
+	 *
+	 * @param {Array.<*>|*} obj
+	 * @returns {boolean}
+	 */
+function areObj(obj) {
+	let o = obj
+	if (!Array.isArray(o)) {
+		obj = [obj]
+	}
+ return obj.every( (/** @type {string | null | undefined} */ o) => o === 'object' && o !== null && o !== undefined && !Array.isArray(o))
+}
+
+/**
+ *
+ * @param {Object} obj
+ * @return {Array<[string, any]>}
+ */
+function SortedEntries(obj) {
+	const entries = Object.entries(obj)
+	if (is_ast_array) {
+		return entries
+	}
+	return entries.sort(([aKey, aVal], [bKey, bVal]) => {
+		if (areObj([aVal, bVal])) {
+			if (aVal.start && bVal.start) {
+				return aVal.start - bVal.start
+			}
+
+		} else if (areObj(aVal)) {
+			return 1
+		} else if (areObj(bVal)) {
+			return -1
+		}
+		if (aKey < bKey) return -1;
+		if (aKey > bKey) return 1;
+		return 0;
+	})
+}
+
+	/**
 	 * @param {Object} obj
 	 * @returns {string}
 	 */
@@ -143,7 +183,7 @@
 		{:else}
 			<span>{is_ast_array ? '[' : '{'}</span>
 			<ul>
-				{#each Object.entries(value) as [k, v]}
+				{#each SortedEntries(value) as [k, v]}
 					{#if !filtered_out_key(k) &&  typeof v === 'object' && v !== null }
 						<svelte:self key={is_ast_array ? '' : k} value={v} {path_nodes} {autoscroll} />
 					{/if}

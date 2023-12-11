@@ -81,17 +81,13 @@
 		return k === 'start' || k === 'end' || k === 'loc' || k === 'type';
 	}
 
-	/**
-	 *
-	 * @param {Array.<*>|*} obj
-	 * @returns {boolean}
-	 */
-function areObj(obj) {
-	let o = obj
-	if (!Array.isArray(o)) {
-		obj = [obj]
-	}
- return obj.every( (/** @type {string | null | undefined} */ o) => o === 'object' && o !== null && o !== undefined && !Array.isArray(o))
+/**
+ *
+ * @param {...*} args
+ * @returns {boolean}
+ */
+function areObj(...args) {
+	return args.every(o => typeof o === 'object' && o !== null && o !== undefined && !Array.isArray(o));
 }
 
 /**
@@ -105,7 +101,7 @@ function SortedEntries(obj) {
 		return entries
 	}
 	return entries.sort(([aKey, aVal], [bKey, bVal]) => {
-		if (areObj([aVal, bVal])) {
+		if (areObj(aVal, bVal)) {
 			if (aVal.start && bVal.start) {
 				return aVal.start - bVal.start
 			}

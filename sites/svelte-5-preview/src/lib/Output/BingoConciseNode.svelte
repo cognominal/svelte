@@ -25,7 +25,28 @@
 		'end' in value &&
 		typeof value.start === 'number' &&
 		typeof value.end === 'number';
-	$: key_text = key ? `${key}:` : '';
+	let key_text = '';
+
+	$: {
+		if (key) {
+			if (value && typeof value === 'object') {
+				console.log('key', key, 'value', value);
+				key_text = '';
+				if ('type' in value) {
+					key_text = `${key} t:${value.type}:`;
+				} else if ('kind' in value) {
+					key_text = `${key} k:${value.kind}:`;
+				}
+			} else if (value && typeof Array.isArray(value)) {
+				key_text = `a ${key}:`;
+			} else {
+				key_text = `${key}:`;
+			}
+		} else {
+			key_text = '?';
+		}
+		//  key_text = key ? `${key}:` : '';
+	}
 
 	let preview_text = '';
 	$: {
@@ -36,7 +57,8 @@
 
 			preview_text = `[ ${value.length} element${value.length === 1 ? '' : 's'} ]`;
 		} else {
-			preview_text = `{ ${filtered_object(value)} }`;
+			preview_text = ''
+			// preview_text = `{ ${filtered_object(value)} }`;
 		}
 	}
 
@@ -55,9 +77,9 @@
 	 * @param {string} k
 	 * @reutrn {boolean}
 	 */
-function filtered_out_key(k) {
-	return k === 'start' || k === 'end' || k === 'loc' || k === 'type';
-}
+	function filtered_out_key(k) {
+		return k === 'start' || k === 'end' || k === 'loc' || k === 'type';
+	}
 
 	/**
 	 * @param {Object} obj
@@ -122,7 +144,7 @@ function filtered_out_key(k) {
 			<span>{is_ast_array ? '[' : '{'}</span>
 			<ul>
 				{#each Object.entries(value) as [k, v]}
-					{#if !filtered_out_key(k) }
+					{#if !filtered_out_key(k) &&  typeof v === 'object' && v !== null }
 						<svelte:self key={is_ast_array ? '' : k} value={v} {path_nodes} {autoscroll} />
 					{/if}
 				{/each}

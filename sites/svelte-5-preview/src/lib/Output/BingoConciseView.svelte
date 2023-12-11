@@ -2,6 +2,7 @@
 	import Message from '../Message.svelte';
 	import BingoConciseNode from './BingoConciseNode.svelte';
 	import { cursorIndex } from '../CodeMirror.svelte';
+	import { showMessage } from '$lib/store.js';
 
 	/** @type {import('svelte/types/compiler/interfaces').Ast} */
 	export let ast;
@@ -68,7 +69,9 @@
 			{/if}
 		</code>
 	</pre>
-	<Message kind="info">The AST is not public API and may change at any point in time</Message>
+	{#if $showMessage}
+		<Message kind="info">The AST is not public API and may change at any point in time</Message>
+	{/if}
 </div>
 
 <style>

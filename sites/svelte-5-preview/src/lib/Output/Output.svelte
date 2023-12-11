@@ -9,6 +9,7 @@
 	import PaneWithPanel from './PaneWithPanel.svelte';
 	import Viewer from './Viewer.svelte';
 	import { SplitPane } from '@rich_harris/svelte-split-pane';
+	import { view, showMessage } from '$lib/store.js';
 
 
 	/** @type {string | null} */
@@ -40,6 +41,13 @@
 
 	let showBingo = true;
 
+	 // Reactive statement that watches $view
+	 $: if ($view === 'bingo') {
+        setTimeout(() => {
+					$showMessage = false;
+        }, 10000); // 10 seconds
+    }
+
 	$: if (selected) {
 		if (selected.type === 'json') {
 			js_editor.set({ code: `/* Select a component to see its compiled code */`, lang: 'js' });
@@ -60,8 +68,8 @@
 	/** @type {CodeMirror} */
 	let css_editor;
 
-	/** @type {'result' | 'js' | 'css' | 'ast' | 'bingo'} */
-	let view = 'result';
+	// /** @type {'result' | 'js' | 'css' | 'ast' | 'bingo'} */
+	// let view = 'result';
 	let markdown = '';
 
 	$: ast = compiled?.result?.ast;
@@ -71,20 +79,20 @@
 	{#if selected?.type === 'md'}
 		<button class="active">Markdown</button>
 	{:else}
-		<button class:active={view === 'result'} on:click={() => (view = 'result')}>Result</button>
-		<button class:active={view === 'js'} on:click={() => (view = 'js')}>JS output</button>
-		<button class:active={view === 'css'} on:click={() => (view = 'css')}>CSS output</button>
+		<button class:active={$view=== 'result'} on:click={() => ($view= 'result')}>Result</button>
+		<button class:active={$view=== 'js'} on:click={() => ($view= 'js')}>JS output</button>
+		<button class:active={$view=== 'css'} on:click={() => ($view= 'css')}>CSS output</button>
 		{#if showAst}
-			<button class:active={view === 'ast'} on:click={() => (view = 'ast')}>AST output</button>
+			<button class:active={$view=== 'ast'} on:click={() => ($view= 'ast')}>AST output</button>
 		{/if}
 		{#if showBingo}
-			<button class:active={view === 'bingo'} on:click={() => (view = 'bingo')}>Bingo</button>
+			<button class:active={$view=== 'bingo'} on:click={() => ($view= 'bingo')}>Bingo</button>
 		{/if}
 	{/if}
 </div>
 
 <!-- component viewer -->
-<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'result'}>
+<div class="tab-content" class:visible={selected?.type !== 'md' && $view=== 'result'}>
 	<Viewer
 		bind:error={runtimeError}
 		{status}
@@ -96,7 +104,7 @@
 </div>
 
 <!-- js output -->
-<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'js'}>
+<div class="tab-content" class:visible={selected?.type !== 'md' && $view=== 'js'}>
 	{#if embedded}
 		<CodeMirror bind:this={js_editor} readonly />
 	{:else}
@@ -113,31 +121,31 @@
 </div>
 
 <!-- css output -->
-<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'css'}>
+<div class="tab-content" class:visible={selected?.type !== 'md' && $view=== 'css'}>
 	<CodeMirror bind:this={css_editor} readonly />
 </div>
 
 <!-- ast output -->
 {#if showAst && ast}
-	<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'ast'}>
-		<!-- ast view interacts with the module editor, wait for it first -->
+	<div class="tab-content" class:visible={selected?.type !== 'md' && $view=== 'ast'}>
+		<!-- ast $viewinteracts with the module editor, wait for it first -->
 		{#if $module_editor}
-			<AstView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+			<AstView {ast} autoscroll={selected?.type !== 'md' && $view=== 'ast'} />
 		{/if}
 	</div>
 {/if}
 <!-- bingo output -->
 {#if BingoView && ast}
 	<!-- <h3>bingo</h3> -->
-	<div class="tab-content" class:visible={selected?.type !== 'md' && view === 'bingo'}>
+	<div class="tab-content" class:visible={selected?.type !== 'md' && $view=== 'bingo'}>
 		<!-- ast view interacts with the module editor, wait for it first -->
 		{#if $module_editor}
 		<SplitPane  min="10%" type="vertical"  priority="max">
 			<section slot="a">
-				<BingoConciseView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+				<BingoConciseView {ast} autoscroll={selected?.type !== 'md' && $view === 'ast'} />
 			</section>
 			<section slot="b">
-				<BingoView {ast} autoscroll={selected?.type !== 'md' && view === 'ast'} />
+				<BingoView {ast} autoscroll={selected?.type !== 'md' && $view === 'ast'} />
 			</section>
 		</SplitPane>
 		{/if}

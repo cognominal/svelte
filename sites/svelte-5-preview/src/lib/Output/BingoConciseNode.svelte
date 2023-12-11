@@ -28,24 +28,30 @@
 	let key_text = '';
 
 	$: {
-		if (key) {
-			if (value && typeof value === 'object') {
-				console.log('key', key, 'value', value);
-				key_text = '';
+		  const k = key ? `${key}: ` : '';
+			let annotation = ''
+			if (value && areObj(value)) {
 				if ('type' in value) {
-					key_text = `${key} t:${value.type}:`;
-				} else if ('kind' in value) {
-					key_text = `${key} k:${value.kind}:`;
+					annotation += `${value.type} `;
 				}
-			} else if (value && typeof Array.isArray(value)) {
-				key_text = `a ${key}:`;
-			} else {
-				key_text = `${key}:`;
+				if ('operator' in value) {
+					annotation += `${value.operator} `;
+				}
+				if ('value' in value) {
+					// @ts-ignore
+					// value.value is a string or number
+					annotation += `${sprintValue(value.value)} `;
+				}
+				if ('name' in value) {
+					annotation += `${value.name} `;
+				}
+				// I thought js had `kind` and svelte `type`
+				// } else if ('kind' in value) {
+				// 	annotation = `k:${value.kind}`;
+
 			}
-		} else {
-			key_text = '?';
-		}
-		//  key_text = key ? `${key}:` : '';
+			key_text = `${k}${annotation}`;
+		// console.log('text:', key_text, 'key:', key, 'value:', value)
 	}
 
 	let preview_text = '';
@@ -74,6 +80,23 @@
 	}
 
 	/**
+	 *
+	 * @param {number|string} v
+	 * @returns {string}
+	 */
+	function sprintValue(v) {
+		if (typeof v === 'string') {
+			if (v.length > 20) {
+				return `"${v.slice(0, 20)}"...`
+			}
+			return `"${v}"`
+
+		}
+		return `$v`
+
+	}
+
+	/**
 	 * @param {string} k
 	 * @reutrn {boolean}
 	 */
@@ -95,7 +118,7 @@ function areObj(...args) {
  * @param {Object} obj
  * @return {Array<[string, any]>}
  */
-function SortedEntries(obj) {
+function sortedEntries(obj) {
 	const entries = Object.entries(obj)
 	if (is_ast_array) {
 		return entries
@@ -103,7 +126,7 @@ function SortedEntries(obj) {
 	return entries.sort(([aKey, aVal], [bKey, bVal]) => {
 		if (areObj(aVal, bVal)) {
 			if (aVal.start && bVal.start) {
-				return aVal.start - bVal.start
+				return bVal.start - aVal.start
 			}
 
 		} else if (areObj(aVal)) {
@@ -164,7 +187,7 @@ function SortedEntries(obj) {
 	on:focus={handle_mark_text}
 	on:mouseleave={handle_unmark_text}
 >
-	{#if !is_root && is_collapsable}
+	{#if !is_root && is_collapsable && filtered_object(value) !== ''}
 		<button class="ast-toggle" class:open={!collapsed} on:click={() => (collapsed = !collapsed)}>
 			{key_text}
 		</button>
@@ -177,15 +200,13 @@ function SortedEntries(obj) {
 				{preview_text}
 			</button>
 		{:else}
-			<span>{is_ast_array ? '[' : '{'}</span>
 			<ul>
-				{#each SortedEntries(value) as [k, v]}
+				{#each sortedEntries(value) as [k, v]}
 					{#if !filtered_out_key(k) &&  typeof v === 'object' && v !== null }
 						<svelte:self key={is_ast_array ? '' : k} value={v} {path_nodes} {autoscroll} />
 					{/if}
 				{/each}
 			</ul>
-			<span>{is_ast_array ? ']' : '}'}</span>
 		{/if}
 	{:else}
 		<span class="token {typeof value}">

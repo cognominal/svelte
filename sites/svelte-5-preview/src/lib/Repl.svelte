@@ -15,7 +15,6 @@
 
 	export let packagesUrl = 'https://unpkg.com';
 	export let svelteUrl = `${BROWSER ? location.origin : ''}/svelte`;
-	console.log(`svelteUrl ${BROWSER} ${svelteUrl}`);
 	export let embedded = false;
 	/** @type {'columns' | 'rows'} */
 	export let orientation = 'columns';

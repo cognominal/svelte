@@ -82,10 +82,13 @@
 
 	/**
 	 *
-	 * @param {number|string} v
+	 * @param {number|string|Object} v
 	 * @returns {string}
 	 */
 	function sprintValue(v) {
+		if (typeof v === 'object') {
+			return ''
+		}
 		if (typeof v === 'string') {
 			if (v.length > 20) {
 				return `"${v.slice(0, 20)}"...`
@@ -93,7 +96,7 @@
 			return `"${v}"`
 
 		}
-		return `$v`
+		return `${v}`
 
 	}
 

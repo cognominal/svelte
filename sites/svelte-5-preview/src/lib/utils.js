@@ -39,13 +39,8 @@ export function getStart(obj) {
 	if (kids === undefined) {
 		throw new Error("AST node with no kids found.  AST node: " + JSON.stringify(obj))
 	}
-	// throw new Error("kids" + JSON.stringify(kids))
-	// throw new Error(JSON.stringify(kids.map(n => n.start)));
 	// @ts-ignore
-		const min = Math.min(...kids.map(n => n.start));
-		// throw new Error("min " + min )
-		// throw new Error("min " + min )
-
+		const min = Math.min(...kids.map(n => getStart(n)));
 		return min;
 }
 
@@ -65,7 +60,6 @@ export function ASTNodekids(node) {
  * @return {Array<[string, any]>}
 */
 export function sortedEntries(obj) {
-	console.log("---\n", JSON.stringify(obj))
 	const entries = Object.entries(obj)
 	if (Array.isArray(obj)) {
 		return entries
@@ -85,11 +79,6 @@ export function sortedEntries(obj) {
 		if (aKey > bKey) return 1;
 		return 0;
 	})
-	// if ('script' in obj) {
-		console.log(JSON.stringify(obj))
-		console.log(JSON.stringify(sorted))
-	// }
-
 	return sorted
 }
 /**

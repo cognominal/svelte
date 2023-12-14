@@ -49,7 +49,6 @@ export function getStart(obj) {
  * @returns {Array<[string, any]> | undefined}
  */
 export function ASTNodekids(node) {
-	console.log(Object.entries);
 	const firstArrayEntry = Object.entries(node).find(([_, value]) => Array.isArray(value));
 	return firstArrayEntry ? firstArrayEntry[1] : undefined;
 }

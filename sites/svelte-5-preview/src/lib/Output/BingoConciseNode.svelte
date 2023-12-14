@@ -35,6 +35,10 @@
 				if ('type' in value) {
 					annotation += `${value.type} `;
 				}
+				if ('type' in value && value.type === 'Text') {
+					// @ts-ignore
+					annotation += `text ${JSON.stringify(value.raw)} `;
+				}
 				if ('operator' in value) {
 					annotation += `${value.operator} `;
 				}

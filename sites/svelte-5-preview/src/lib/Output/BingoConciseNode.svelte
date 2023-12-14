@@ -1,6 +1,7 @@
 <script>
 	import { get_repl_context } from '$lib/context.js';
 	import { tick } from 'svelte';
+	import { areObj, filtered_object, sortedEntries, filtered_out_key } from '$lib/utils.js';
 
 	export let key = '';
 	/** @type {import('svelte/types/compiler/interfaces').Ast} */
@@ -96,65 +97,7 @@
 
 	}
 
-	/**
-	 * @param {string} k
-	 * @reutrn {boolean}
-	 */
-	function filtered_out_key(k) {
-		return k === 'start' || k === 'end' || k === 'loc' || k === 'type';
-	}
 
-/**
- *
- * @param {...*} args
- * @returns {boolean}
- */
-function areObj(...args) {
-	return args.every(o => typeof o === 'object' && o !== null && o !== undefined && !Array.isArray(o));
-}
-
-/**
- *
- * @param {Object} obj
- * @return {Array<[string, any]>}
- */
-function sortedEntries(obj) {
-	const entries = Object.entries(obj)
-	if (is_ast_array) {
-		return entries
-	}
-	return entries.sort(([aKey, aVal], [bKey, bVal]) => {
-		if (areObj(aVal, bVal)) {
-			if (aVal.start && bVal.start) {
-				return bVal.start - aVal.start
-			}
-
-		} else if (areObj(aVal)) {
-			return 1
-		} else if (areObj(bVal)) {
-			return -1
-		}
-		if (aKey < bKey) return -1;
-		if (aKey > bKey) return 1;
-		return 0;
-	})
-}
-
-	/**
-	 * @param {Object} obj
-	 * @returns {string}
-	 */
-
-	function filtered_object(obj) {
-		const result = [];
-
-		for (const [k, v] of Object.entries(obj)) {
-			if (filtered_out_key(k)) continue;
-			result.push(k);
-		}
-
-		return result.join(', ');
-	}
 	/** @param {MouseEvent | FocusEvent} e */
 	function handle_mark_text(e) {
 		if (is_markable) {

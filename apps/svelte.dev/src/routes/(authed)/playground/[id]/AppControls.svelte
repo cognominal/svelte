@@ -280,13 +280,13 @@
 			}
 		}
 
-		&.download {
+		/* &.download {
 			background-image: url($lib/icons/download-light.svg);
 
 			:root.dark & {
 				background-image: url($lib/icons/download-dark.svg);
 			}
-		}
+		} */
 	}
 
 	.icon:hover,

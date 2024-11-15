@@ -63,7 +63,7 @@
 				radial-gradient(circle at 40% 30%, rgb(235, 243, 249), rgb(214, 222, 228));
 		}
 
-		:root.dark &::before {
+		/* :root.dark &::before {
 			background: linear-gradient(to bottom, transparent, var(--sk-bg-1)),
 				radial-gradient(
 					64.14% 72.25% at 47.58% 31.75%,
@@ -78,7 +78,7 @@
 				),
 				linear-gradient(0deg, hsl(204, 38%, 20%), hsl(204, 10%, 90%));
 		}
-	}
+	} */
 
 	.hero-content {
 		display: flex;

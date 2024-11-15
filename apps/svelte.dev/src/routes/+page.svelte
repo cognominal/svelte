@@ -24,8 +24,9 @@
 
 	<Testimonials />
 
-	<Companies />
-
+	
+	<!-- 
+		<Companies />
 	<Section>
 		<figure>
 			<Video />
@@ -39,7 +40,7 @@
 
 	<Community />
 
-	<Supporters />
+	<Supporters /> -->
 
 	<Footer />
 </div>

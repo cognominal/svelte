@@ -8,11 +8,11 @@
 
 <div class="hero">
 	<div class="hero-content">
-		<h1>web development for the rest of us</h1>
+		<h1>programming made pithy, literate and practical</h1>
 		<a href="/docs" class="cta">get started <Icon name="arrow-right" /></a>
 	</div>
 
-	<picture class="machine">
+	<!-- <picture class="machine">
 		<source
 			srcset={MachineDesktop.sources.avif}
 			width="3795"
@@ -42,7 +42,7 @@
 			src={MachineMobile.img.src}
 			fetchpriority="high"
 		/>
-	</picture>
+	</picture> -->
 </div>
 
 <style>

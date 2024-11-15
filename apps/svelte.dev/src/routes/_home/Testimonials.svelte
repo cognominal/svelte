@@ -1,52 +1,55 @@
 <div class="outer">
 	<p class="definition">
-		<enhanced:img
+		<!-- <enhanced:img
 			class="pronunciation"
 			alt="Svelte pronunciation guide"
 			src="./svelte-pronunciation.svg"
-		/>
-
+		/> -->
+		<span class ="prononciation">lʌʃ</span>
 		<span class="description">
-			<span class="adjective"></span> attractively thin, graceful and stylish
+			<span class="adjective"></span>   growing luxuriantly
+		</span>
+	</p>
+	<p class="definition">
+		<span class ="prononciation">lɛste</span>
+		<span class="description">
+			<span class="adjective"></span>French for  agile, nimble;
+
+		</span>
+	</p>
+	<p class="definition">
+		<span class ="prononciation">liʃ</span>
+		<span class="description">
+			<span class="noun"></span>for literate shell;
+
 		</span>
 	</p>
 
+
 	<div class="blurb">
-		<p>
-			Svelte is a UI framework that uses a compiler to let you write breathtakingly concise
-			components that do minimal work in the browser, using languages you already know — HTML, CSS
-			and JavaScript. <strong>It’s a love letter to web development.</strong>
-		</p>
 
-		<p>
-			But don’t take our word for it. Developers consistently rank Svelte as the framework they’re
-			most excited about using.
-		</p>
+			Lush is pithy, literate and practical. 
+
+			It is embodied by : 
+			<ul>
+				<li>leste : <a href="https://svelte.dev">svelte 5</a> without mustaches</li>
+				<li>lish : literate shell, interactive or not.</li>
+			</ul>
+
+			It supports and encourages: 
+			<ul>
+				<li> fine meshed slangs, </li>
+				<li> typeface and font weight use to provide a richer primary notation
+					 orthogonal with the usual sy
+					ntax highlighting secondary notation.</li>
+				<li> structural editing</li>
+			<ul>
+			We call slush this rich slang notation.
+			
+
+
 	</div>
 
-	<!-- svelte-ignore a11y_consider_explicit_label (the <enhanced:img> alt takes care of it)-->
-	<div class="screenshots">
-		<a href="https://survey.stackoverflow.co/2024/technology#2-web-frameworks-and-technologies">
-			<enhanced:img
-				class="screenshot"
-				alt="Stack Overflow 2024 Developer Survey"
-				src="./stack-overflow.png?w=1200,1600"
-			></enhanced:img>
-		</a>
-
-		<a href="https://2023.stateofjs.com/en-US/libraries/front-end-frameworks/">
-			<enhanced:img
-				class="screenshot"
-				alt="State of JavaScript 2023"
-				src="./state-of-js-chart.png?w=1000,1400"
-			></enhanced:img>
-		</a>
-
-		<a href="https://x.com/flaviocopes/status/1730895911864189299">
-			<enhanced:img class="screenshot" alt="Tweet from @flaviocopes" src="./flavio-light.png?w=800"
-			></enhanced:img>
-		</a>
-	</div>
 </div>
 
 <style>
@@ -63,9 +66,9 @@
 			'screenshots';
 	}
 
-	.definition {
+	/* .definition {
 		grid-area: definition;
-	}
+	} */
 
 	.pronunciation {
 		position: relative;
@@ -144,6 +147,11 @@
 		}
 	}
 
+	.prononciation {
+		color: #D33104;
+		font-size: 4rem
+	}
+
 	.definition {
 		position: relative;
 		display: flex;
@@ -176,6 +184,36 @@
 				content: 'adj.';
 			}
 		}
+		.noun {
+			position: relative;
+			padding: 0.25em 0.5em;
+			line-height: 1;
+			text-transform: uppercase;
+			background: var(--sk-fg-2);
+			border-radius: var(--sk-border-radius);
+			font: var(--sk-font-ui-small);
+			color: var(--sk-bg-2);
+
+			&::after {
+				content: 'noun';
+			}
+		}
+
+		.adjective1 {
+			position: relative;
+			padding: 0.25em 0.5em;
+			line-height: 1;
+			text-transform: uppercase;
+			background: var(--sk-fg-2);
+			border-radius: var(--sk-border-radius);
+			font: var(--sk-font-ui-small);
+			color: var(--sk-bg-2);
+
+			&::after {
+				content: 'adj.';
+			}
+		}
+
 	}
 
 	@media (min-width: 800px) {

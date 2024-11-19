@@ -3,6 +3,7 @@
 	import { get_repl_context } from '../context';
 	import { tick } from 'svelte';
 	import type { CompileResult } from 'svelte/compiler';
+	// import { quickSortPair, type Pair } from './quicksort'
 
 	type Ast = CompileResult['ast'];
 
@@ -18,6 +19,7 @@
 
 	const { toggleable } = get_repl_context();
 
+	let filteredOut = [ "start", "end", "type" ]
 	let root = depth === 0;
 	let open = $state(root);
 
@@ -117,14 +119,17 @@
 			</summary>
 
 			<ul>
+				<!-- {#each quicksortPair(Object.entries(value) as Pair[])} -->
 				{#each Object.entries(value) as [k, v]}
+					{#if !filteredOut.includes(k)}
 					<AstNode
 						key={is_array ? undefined : k}
 						value={v}
 						{path_nodes}
 						{autoscroll}
 						depth={depth + 1}
-					/>
+						/>
+						{/if}
 				{/each}
 			</ul>
 

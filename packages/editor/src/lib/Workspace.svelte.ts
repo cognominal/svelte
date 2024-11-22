@@ -87,6 +87,7 @@ export class Workspace {
 	// TODO this stuff should all be readonly
 	creating = $state.raw<{ parent: string; type: 'file' | 'directory' } | null>(null);
 	modified = $state<Record<string, boolean>>({});
+	verboseAst = true;
 
 	#compiler_options = $state.raw<ExposedCompilerOptions>({
 		generate: 'client',

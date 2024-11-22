@@ -2,7 +2,7 @@
 	import * as context from './context.js';
 	import Item from './Item.svelte';
 	import file_icon from '$lib/icons/file.svg';
-	import { solution } from '../state.svelte';
+	import { solution } from '$lib/tutorial/state.svelte';
 	import type { MenuItem } from '$lib/tutorial';
 	import type { File } from 'editor';
 

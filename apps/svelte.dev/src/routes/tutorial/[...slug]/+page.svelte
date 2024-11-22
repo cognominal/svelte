@@ -3,13 +3,13 @@
 	import { SplitPane } from '@rich_harris/svelte-split-pane';
 	import * as adapter from './adapter.svelte';
 	import { Editor, Workspace } from 'editor';
-	import ContextMenu from './filetree/ContextMenu.svelte';
-	import Filetree from './filetree/Filetree.svelte';
+	import ContextMenu from '$lib/filetree/ContextMenu.svelte';
+	import Filetree from '$lib/filetree/Filetree.svelte';
 	import ImageViewer from './ImageViewer.svelte';
 	import Output from './Output.svelte';
 	import { ScreenToggle } from '@sveltejs/site-kit/components';
 	import Sidebar from './Sidebar.svelte';
-	import { solution } from './state.svelte';
+	import { solution } from '$lib/tutorial/state.svelte';
 	import { needs_webcontainers, text_files } from './shared';
 	import OutputRollup from './OutputRollup.svelte';
 	import { page } from '$app/stores';

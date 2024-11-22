@@ -6,7 +6,7 @@
 	import Item from './Item.svelte';
 	import folder_closed from '$lib/icons/folder.svg';
 	import folder_open from '$lib/icons/folder-open.svg';
-	import { solution } from '../state.svelte';
+	import { solution } from '$lib/tutorial/state.svelte';
 	import type { MenuItem } from '$lib/tutorial';
 	import type { Directory, File as IFile, Item as IItem } from 'editor';
 

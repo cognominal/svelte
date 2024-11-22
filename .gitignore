@@ -4,3 +4,5 @@ node_modules/
 .svelte-kit
 .vercel
 .env.local
+.tours/
+.vscode/bookmarks.json

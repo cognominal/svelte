@@ -15,27 +15,31 @@ level, the expression level.
 
 A purely textual susy is called a vanilla susy.
 The original susy of a given language is called its legacy susy.
-An input susy is a vanilla susy not designed for legibility but as a reminder of how to yse
-strungs
+An input susy is a vanilla susy not designed for legibility but as a reminder of how to use
+stunts.
 
 AST as a reference representation (a2r2) will allow to track modifications at a
 fine granularity by tracking an AST node over time. Such a fine tracking is
-impossible with line based diff. Grit, a new tool, based on [git](https://en.wikipedia.org/wiki/Git)
-will support a2r2 with line based diff when a2r2 is not available or as a backup when a2r2 is buggy.
+impossible with line based diff. Grit, a new tool, based on
+[git](https://en.wikipedia.org/wiki/Git) will support a2r2 with line based diff
+when a2r2 is not available or as a backup when a2r2 is buggy.
 
-As a consequence of a2r2,
-avscode extension adapted from [codetour](https://github.com/microsoft/codetour) will stay in sync as the code change.
+As a consequence of a2r2, avscode extension adapted from
+[codetour](https://github.com/microsoft/codetour) will stay in sync as the code
+change.
 
 
 ## leste as a show case
 
-As a show case, leste is a rich susy for [svelte](https://svelte.dev/docs/svelte/overview) legacy susy
-that do away with cumbersome mustache notations.
+As a show case, leste is a rich susy for
+[svelte](https://svelte.dev/docs/svelte/overview) legacy susy that do away with
+cumbersome mustache notations which have become the norm in reactive template
+languages.
 
-### prototyping lest
+### Prototyping leste
 
 
-#### read only leste
+#### Read only leste
 
 We prototype leste by unparsing AST generated from svelte code. We create a
 modified [svelte.dev](https://svelte.dev/) site to show case leste. 
@@ -43,13 +47,13 @@ The unparser is written in ts but a special slang will be designed for that task
 
 
 
-#### read write leste
+#### Read write leste
 
 We edit leste code using structural editing.
 Stuctural editing is based on stunt which is a redesign of
 snippets popularized by [textMate](https://en.wikipedia.org/wiki/TextMate)
 
-#### short term consequences
+#### Short term consequences
 
 
 Using `svelte.dev` to develop leste means the editor will

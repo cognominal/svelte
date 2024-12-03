@@ -10,18 +10,19 @@
 	interface Props {
 		folder: IFolder;
 		prefix: string;
+		depth?: number
 	}
 
-	let { folder, prefix }: Props = $props();
+	let { folder, prefix, depth = 0 }: Props = $props();
 </script>
 
 <Item icon={folder_open} basename={folder.name} />
 {#if folder.contents}
 	{#each folder.contents as item}
 		{#if item.type === 'file'}
-			<File file={item} />
+			<File depth={depth+1} file={item} />
 		{:else if item.type === 'directory'}
-			<Folder folder={item} {prefix} />
+			<Folder depth={depth+1} folder={item} {prefix} />
 		{/if}
 	{/each}
 {/if}

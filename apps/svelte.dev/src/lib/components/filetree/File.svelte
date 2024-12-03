@@ -7,10 +7,11 @@
 
         interface Props {
 	    	file: IFile;
+			depth?: number;
     	}
 
-        let { file }: Props = $props();
+        let { file, depth = 0 }: Props = $props();
 </script>
 
-<Item 	icon={file_icon}
+<Item 	{depth} icon={file_icon}
 basename={file.basename}></Item>

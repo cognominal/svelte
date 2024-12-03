@@ -7,12 +7,15 @@
 	interface Props {
 		basename: string;
 		icon?: string;
+		depth?: number;
 	}
 
-	let { basename, icon = '' }: Props = $props();
+	let { basename, icon = '', depth = 0 }: Props = $props();
 </script>
 
-<li style:--icon="url(&quot;{icon}&quot;)" class="basename">{basename}</li>
+<li style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
+	<button class="basename">{basename}</button>
+</li>
 
 <style>
 	li {
@@ -28,23 +31,11 @@
 		background-size: 1.2rem;
 	}
 
-	/* button,
+	button,
 	input {
 		background-size: 1.2rem 1.2rem;
 		background-position: 0 45%;
 		background-repeat: no-repeat;
-	}
-
-	:focus-visible {
-		outline-offset: -2px;
-	}
-
-	input {
-		background: var(--sk-bg-3);
-		margin: 0 0.5rem 0 calc(0.5rem + var(--inset));
-		border: 2px solid transparent;
-		padding: 0 0.5rem;
-		font: inherit;
 	}
 
 	.basename {
@@ -61,6 +52,20 @@
 		overflow: hidden;
 		line-height: 1;
 	}
+
+	/*
+	:focus-visible {
+		outline-offset: -2px;
+	}
+
+	input {
+		background: var(--sk-bg-3);
+		margin: 0 0.5rem 0 calc(0.5rem + var(--inset));
+		border: 2px solid transparent;
+		padding: 0 0.5rem;
+		font: inherit;
+	}
+
 
 	input {
 		width: 100%;

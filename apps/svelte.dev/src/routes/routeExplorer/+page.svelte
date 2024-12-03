@@ -1,11 +1,9 @@
 <script lang="ts">
-    import Item from '$lib/components/filetree/Item.svelte'
-    import type { PageData } from './$types';
+import FileTree from '$lib/components/filetree/FileTree.svelte'
+	import File from '../tutorial/[...slug]/filetree/File.svelte';
+import type { PageData } from './$types';
 
     let { data }: { data: PageData } = $props();
 </script>
 
-<ul>
-    <Item path="fakepath"/>
-    <Item path="antoherfakepath"/>
-</ul>
+<FileTree/>

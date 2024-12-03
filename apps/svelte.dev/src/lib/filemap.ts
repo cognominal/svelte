@@ -37,9 +37,7 @@ export class FileMapper {
                 if (ignoreMap.has(name)) return; 
                 const fullPath = join(dir, name);
                 const stats = statSync(fullPath);
-                // console.log('name', name, 'relativeDir', relativeDir)
-                
-                console.log('reldir', relativeDir, 'name', name, 'dir', dir)
+                // console.log('reldir', relativeDir, 'name', name, 'dir', dir)
                 if (stats.isDirectory()) {
                     this.#map.relativeDir = { type: 'directory', name, basename: relativeDir };
                     relativeDir =  join(relativeDir, name)

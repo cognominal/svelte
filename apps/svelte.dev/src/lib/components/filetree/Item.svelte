@@ -5,15 +5,14 @@
 	import { forcefocus } from '@sveltejs/site-kit/actions';
 
 	interface Props {
-        path: string
-    }
+		basename: string;
+		icon?: string;
+	}
 
-    let { path }: Props = $props();
-
+	let { basename, icon = '' }: Props = $props();
 </script>
 
-<li>{path}</li>
-
+<li style:--icon="url(&quot;{icon}&quot;)" class="basename">{basename}</li>
 
 <style>
 	li {

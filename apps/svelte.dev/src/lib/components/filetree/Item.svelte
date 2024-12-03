@@ -1,3 +1,20 @@
+<script lang="ts">
+	import { tick } from 'svelte';
+	// import { open } from './ContextMenu.svelte';
+	import type { MenuItem } from '$lib/tutorial';
+	import { forcefocus } from '@sveltejs/site-kit/actions';
+
+	interface Props {
+        path: string
+    }
+
+    let { path }: Props = $props();
+
+</script>
+
+<li>{path}</li>
+
+
 <style>
 	li {
 		--bg: var(--sk-bg-3);
@@ -12,7 +29,7 @@
 		background-size: 1.2rem;
 	}
 
-	button,
+	/* button,
 	input {
 		background-size: 1.2rem 1.2rem;
 		background-position: 0 45%;
@@ -89,5 +106,5 @@
 	[aria-current='true']:has(:focus-visible)::after,
 	:global(.mobile-filetree) [aria-current='true']::after {
 		display: none;
-	}
+	} */
 </style>

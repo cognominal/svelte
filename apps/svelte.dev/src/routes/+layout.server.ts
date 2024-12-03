@@ -44,7 +44,12 @@ const nav_links: NavigationLink[] = [
 	{
 		title: 'Blog',
 		slug: 'blog'
+	},
+	{
+		title: 'Route explorer',
+		slug: 'routeExplorer'
 	}
+
 ];
 
 const sections: Record<string, string> = {
@@ -52,7 +57,8 @@ const sections: Record<string, string> = {
 	playground: 'Playground',
 	blog: 'Blog',
 	tutorial: 'Tutorial',
-	search: 'Search'
+	search: 'Search',
+	routeExplorer: 'Route Explorer'
 };
 
 const banner: BannerData = {

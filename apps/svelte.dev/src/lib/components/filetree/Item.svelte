@@ -5,16 +5,17 @@
 	import { forcefocus } from '@sveltejs/site-kit/actions';
 
 	interface Props {
-		basename: string;
+		name: string;
 		icon?: string;
 		depth?: number;
+		onclick?: (e: MouseEvent) => void;
 	}
 
-	let { basename, icon = '', depth = 0 }: Props = $props();
+	let { name, icon = '', depth = 0, onclick }: Props = $props();
 </script>
 
 <li style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
-	<button class="basename">{basename}</button>
+	<button {onclick} class="name">{name}</button>
 </li>
 
 <style>
@@ -38,7 +39,7 @@
 		background-repeat: no-repeat;
 	}
 
-	.basename {
+	.name {
 		display: block;
 		position: relative;
 		margin: 0;

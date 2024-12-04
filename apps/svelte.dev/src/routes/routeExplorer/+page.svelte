@@ -8,12 +8,15 @@
 	let { data }: { data: PageData } = $props();
 
 	let folder: IFolder = {
-		type: 'directory',
+		type: 'folder',
 		name: '/',
 		basename: '',
 		contents: [
-			{ type: 'file', name: 'index.svelte', basename: 'index.svelte' },
-			{ type: 'directory', name: 'subdir', basename: '/' }
+			{ type: 'file', name: 'index.svelte', basename: '/' },
+			{ type: 'folder', name: 'subfolder', basename: '/', contents: [
+                { type: 'file', name: 'README.md', basename: '/subfolder' },
+                
+            ] },
 		]
 	};
 </script>

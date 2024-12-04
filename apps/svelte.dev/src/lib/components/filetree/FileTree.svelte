@@ -1,7 +1,11 @@
 <script lang="ts">
+    import { writable } from 'svelte/store';
     import Item from '$lib/components/filetree/Item.svelte'
     import type { IFile , IItem, IFolder } from './types';
     import Folder from './Folder.svelte'
+    import * as context from './context.js';
+	import { afterNavigate } from '$app/navigation';
+
 
 
     interface Props {
@@ -11,6 +15,18 @@
     }
 
     let { folder, mobile = false }: Props = $props();
+
+    const collapsed = writable({} as Record<string, boolean>);
+
+
+    afterNavigate(() => {
+		collapsed.set({});
+	});
+
+	context.set({
+		collapsed
+    })
+
 
 </script>
 
@@ -31,7 +47,7 @@
 		}
 	}}
 >
-<Folder prefix='' {folder}/>
+	<Folder prefix="" {folder} />
 </ul>
 
 <style>

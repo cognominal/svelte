@@ -2,15 +2,15 @@
 export interface IFile {
 	type: 'file';
 	name: string;
-	basename: string;
+	folderName: string;
 	contents?: string;
 	// text: boolean;
 }
 
 export interface IFolder {
-	type: 'directory';
+	type: 'folder';
 	name: string;
-	basename: string;
+	folderName: string;
     contents?: IItem[];
 }
 

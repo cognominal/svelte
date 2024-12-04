@@ -14,4 +14,4 @@
 </script>
 
 <Item 	{depth} icon={file_icon}
-basename={file.basename}></Item>
+name={file.name}></Item>

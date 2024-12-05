@@ -10,11 +10,12 @@
 
 import { readdirSync, statSync, readFileSync } from 'fs';
 import { join } from 'path';
-import type { File, Directory, Item } from 'editor'
+// import type { File, Directory, Item } from 'editor'
+import type { IFile, IFolder, IItem } from '$lib/components/filetree/types';
 
 export type Path = string
 // export class FileMap extends Map<Path, Item> {}
-export  type FileMap = { [key:string]: Item}
+export  type FileMap = { [key:string]: IItem}
 
 
 export class FileMapper {
@@ -25,7 +26,7 @@ export class FileMapper {
 
     } 
 
-    constructor(rootDir: string, ignoreMap: Map<string, boolean>, filter : (item: Item) => boolean) {
+    constructor(rootDir: string, ignoreMap: Map<string, boolean>, filter : (item: IItem) => boolean) {
         this.rootDir = rootDir;
         this.buildInitialMap(ignoreMap);
     }
@@ -39,7 +40,7 @@ export class FileMapper {
                 const stats = statSync(fullPath);
                 // console.log('reldir', relativeDir, 'name', name, 'dir', dir)
                 if (stats.isDirectory()) {
-                    this.#map.relativeDir = { type: 'directory', name, basename: relativeDir };
+                    this.#map.relativeDir = { type: 'folder', name, folderName: relativeDir };
                     relativeDir =  join(relativeDir, name)
                     traverse(relativeDir, fullPath);
                 } else if (stats.isFile()) {
@@ -47,7 +48,7 @@ export class FileMapper {
                     // const text = isTextFile(fullPath); // Implement a function to check if the file is a text file
 
                     // we force contents and text
-                    this.#map.relativeDir = { type: 'file',  name, basename: relativeDir, contents: '', text: true };
+                    this.#map.relativeDir = { type: 'file',  name, folderName: relativeDir, contents: ''};
                 }
             });
         };

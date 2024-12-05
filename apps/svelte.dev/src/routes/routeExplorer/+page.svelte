@@ -10,11 +10,11 @@
 	let folder: IFolder = {
 		type: 'folder',
 		name: '/',
-		basename: '',
+		folderName: '',
 		contents: [
-			{ type: 'file', name: 'index.svelte', basename: '/' },
-			{ type: 'folder', name: 'subfolder', basename: '/', contents: [
-                { type: 'file', name: 'README.md', basename: '/subfolder' },
+			{ type: 'file', name: 'index.svelte', folderName: '/' },
+			{ type: 'folder', name: 'subfolder', folderName: '/', contents: [
+                { type: 'file', name: 'README.md', folderName: '/subfolder' },
                 
             ] },
 		]

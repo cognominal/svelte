@@ -1,33 +1,28 @@
 <script lang="ts">
-    import { writable } from 'svelte/store';
-    import Item from '$lib/components/filetree/Item.svelte'
-    import type { IFile , IItem, IFolder } from './types';
-    import Folder from './Folder.svelte'
-    import * as context from './context.js';
+	import { writable } from 'svelte/store';
+	import Item from '$lib/components/filetree/Item.svelte';
+	import type { IFile, IItem, IFolder } from './types';
+	import Folder from './Folder.svelte';
+	import File from './File.svelte';
+	import * as context from './context.js';
 	import { afterNavigate } from '$app/navigation';
 
+	interface Props {
+		fileOrFolder: IFile | IFolder;
+		mobile?: boolean;
+	}
 
+	let { fileOrFolder, mobile = false }: Props = $props();
 
-    interface Props {
-        folder: IFolder ;
-        mobile?: boolean;
+	const collapsed = writable({} as Record<string, boolean>);
 
-    }
-
-    let { folder, mobile = false }: Props = $props();
-
-    const collapsed = writable({} as Record<string, boolean>);
-
-
-    afterNavigate(() => {
+	afterNavigate(() => {
 		collapsed.set({});
 	});
 
 	context.set({
 		collapsed
-    })
-
-
+	});
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
@@ -47,7 +42,11 @@
 		}
 	}}
 >
-	<Folder prefix="" {folder} />
+	{#if fileOrFolder.type === 'folder'}
+		<Folder prefix="" folder={fileOrFolder} />
+	{:else}
+		<File  file={fileOrFolder} />
+	{/if}
 </ul>
 
 <style>

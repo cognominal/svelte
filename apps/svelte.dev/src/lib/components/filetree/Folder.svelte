@@ -25,6 +25,7 @@
 	}}
 	icon={$collapsed[folder.name] ? folder_closed : folder_open}
 	name={folder.name}
+	{depth}
 />
 {#if folder.contents && !$collapsed[folder.name]}
 	{#each folder.contents as item}

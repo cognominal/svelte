@@ -1,6 +1,5 @@
 <script lang="ts">
 	import FileTree from '$lib/components/filetree/FileTree.svelte';
-	// import File from '../tutorial/[...slug]/filetree/File.svelte';
 	import type { IFile, IFolder, IItem } from '$lib/components/filetree/types';
 
 	import type { PageData } from './$types';
@@ -19,6 +18,15 @@
             ] },
 		]
 	};
+
+	let file: IFile = {
+		type: 'file',
+		name: 'index.svelte',
+		folderName: '/',
+	};
+
+
 </script>
 
-<FileTree {folder} />
+<FileTree fileOrFolder={data.fmap.tree} />
+<!-- <FileTree {folder} /> -->

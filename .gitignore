@@ -7,3 +7,4 @@ node_modules/
 .env
 .tours
 **/bookmarks.json
+pnpm-lock.yaml

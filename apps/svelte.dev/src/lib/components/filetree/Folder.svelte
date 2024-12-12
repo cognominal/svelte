@@ -16,23 +16,26 @@
 
 	let { folder, prefix, depth = 0 }: Props = $props();
 
-	const { collapsed } = context.get();
+	const { collapsed, filter } = context.get();
 </script>
 
-<Item sticky={true}
-	onclick={() => {
-		$collapsed[folder.name] = !$collapsed[folder.name];
-	}}
-	icon={$collapsed[folder.name] ? folder_closed : folder_open}
-	name={folder.name}
-	{depth}
-/>
-{#if folder.contents && !$collapsed[folder.name]}
-	{#each folder.contents as item}
-		{#if item.type === 'file'}
-			<File  depth={depth + 1} file={item} />
-		{:else if item.type === 'folder'}
-			<Folder depth={depth + 1} folder={item} {prefix} />
-		{/if}
-	{/each}
-{/if}
+<div>
+	<Item
+		sticky={true}
+		onclick={() => {
+			$collapsed[folder.name] = !$collapsed[folder.name];
+		}}
+		icon={$collapsed[folder.name] ? folder_closed : folder_open}
+		name={folder.name}
+		{depth}
+	/>
+	{#if folder.contents && !$collapsed[folder.name]}
+		{#each folder.contents as item}
+			{#if item.type === 'file'}
+				<File depth={depth + 1} file={item} />
+			{:else if item.type === 'folder'}
+				<Folder depth={depth + 1} folder={item} {prefix} />
+			{/if}
+		{/each}
+	{/if}
+</div>

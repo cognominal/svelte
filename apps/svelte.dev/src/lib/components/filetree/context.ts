@@ -5,6 +5,8 @@ import type { Writable } from 'svelte/store';
 type FileTreeContext = {
     collapsed: Writable<Record<string,boolean>>
 	stickyHeights: Writable<number[]>
+	// filters: Writable<string[]>
+	filter: Writable<string>
 }
 
 const key = {};

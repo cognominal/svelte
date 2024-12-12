@@ -18,6 +18,8 @@
 
 	const collapsed = writable({} as Record<string, boolean>);
 	const stickyHeights = writable([]);
+	const filters = writable<string>("");
+	// const filters = writable<string[]>([]);
 
 
 	afterNavigate(() => {
@@ -29,8 +31,9 @@
 	});
 </script>
 
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 
+<input type="text" placeholder="filter"/>
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <ul
 	class="filetree"
 	class:mobile

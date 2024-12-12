@@ -8,6 +8,8 @@
 	import { injectSpeedInsights } from '@vercel/speed-insights/sveltekit';
 	import { inject } from '@vercel/analytics';
 	import { beforeNavigate } from '$app/navigation';
+	import '../app.css';
+
 
 	injectSpeedInsights();
 	inject({ mode: dev ? 'development' : 'production' });

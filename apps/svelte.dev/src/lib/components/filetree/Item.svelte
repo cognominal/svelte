@@ -1,12 +1,11 @@
 <script lang="ts">
 	import { tick } from 'svelte';
-	import { onMount } from "svelte";
+	import { onMount } from 'svelte';
 
 	// import { open } from './ContextMenu.svelte';
 	import type { MenuItem } from '$lib/tutorial';
 	import { forcefocus } from '@sveltejs/site-kit/actions';
 	import * as context from './context.js';
-
 
 	interface Props {
 		name: string;
@@ -14,39 +13,46 @@
 		depth?: number;
 		onclick?: (e: MouseEvent) => void;
 		sticky?: boolean;
-
 	}
 
 	let { name, icon = '', depth = 0, onclick, sticky = false }: Props = $props();
 
 	const { stickyHeights } = context.get();
 
-
-	let li : HTMLElement | undefined
-
+	let li: HTMLElement | undefined;
 
 	onMount(() => {
-        if (li) {
-            // Dynamically measure the height of the header
-            const height = li.getBoundingClientRect().height;
-            $stickyHeights[depth] = height; // Store height in the shared array
-        }
-    });
+		if (li) {
+			// Dynamically measure the height of the header
+			const height = li.getBoundingClientRect().height;
+			$stickyHeights[depth] = height; // Store height in the shared array
+		}
+	});
 
-    // Calculate the cumulative offset for the current depth
-    let topOffset = $derived($stickyHeights
-        .slice(0, depth) // Sum up heights of previous headers
-        .reduce((sum, height) => sum + (height || 0), 0));
+	// Calculate the cumulative offset for the current depth
+	let topOffset = $derived(
+		$stickyHeights
+			.slice(0, depth) // Sum up heights of previous headers
+			.reduce((sum, height) => sum + (height || 0), 0)
+	);
 
-		// style="top: {topOffset}px;
 </script>
 
-<li bind:this={li}   class=" top-[{topOffset}] z-[{100-depth}] "
-style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
-	<button {onclick} class="name {sticky ? 'sticky' : '' }">{name} -- {topOffset}</button>
+<!-- style="padding: 0 1rem 0 calc(1rem + var(--inset));"  -->
+<!-- class="pt-0 pr-4 pb-0 pl-dynamic  -->
+
+<li bind:this={li} class=" " style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
+	<button {onclick} 
+	class="pt-0 pr-4 pb-0 pl-dynamic block relative m-0  text-inherit flex-1 h-full text-left border-2 border-transparent whitespace-nowrap overflow-hidden leading-none top-[{topOffset}] z-[{100 - depth}] {sticky ? 'sticky' : ''}"
+		>{name} 
+	</button>
 </li>
 
 <style>
+  .pl-dynamic {
+    padding-left: calc(1rem + var(--inset));
+  }
+
 	li {
 		--bg: var(--sk-bg-3);
 		--inset: calc((var(--depth) * 1.2rem) + 1.5rem);
@@ -67,30 +73,15 @@ style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
 		background-repeat: no-repeat;
 	}
 
-	.name {
-		display: block;
-		position: relative;
-		margin: 0;
-		padding: 0 1rem 0 calc(1rem + var(--inset));
-		color: inherit;
-		flex: 1;
-		height: 100%;
-		text-align: left;
-		border: 2px solid transparent;
-		white-space: nowrap;
-		overflow: hidden;
-		line-height: 1;
-	}
 
 	.sticky {
-	    /* background-color: var(--bg-color); */
-	  /* opacity: 1; */
-	  /* background-color: black; */
-    position: sticky;
-    /* padding: 8px; */
-    /* border-bottom: 1px solid #ddd; */
-}
-
+		/* background-color: var(--bg-color); */
+		/* opacity: 1; */
+		/* background-color: black; */
+		position: sticky;
+		/* padding: 8px; */
+		/* border-bottom: 1px solid #ddd; */
+	}
 
 	/*
 	:focus-visible {

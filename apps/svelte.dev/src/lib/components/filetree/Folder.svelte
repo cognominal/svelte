@@ -19,7 +19,7 @@
 	const { collapsed } = context.get();
 </script>
 
-<Item
+<Item sticky={true}
 	onclick={() => {
 		$collapsed[folder.name] = !$collapsed[folder.name];
 	}}
@@ -30,7 +30,7 @@
 {#if folder.contents && !$collapsed[folder.name]}
 	{#each folder.contents as item}
 		{#if item.type === 'file'}
-			<File depth={depth + 1} file={item} />
+			<File  depth={depth + 1} file={item} />
 		{:else if item.type === 'folder'}
 			<Folder depth={depth + 1} folder={item} {prefix} />
 		{/if}

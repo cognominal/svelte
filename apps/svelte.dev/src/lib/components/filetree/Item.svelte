@@ -1,21 +1,49 @@
 <script lang="ts">
 	import { tick } from 'svelte';
+	import { onMount } from "svelte";
+
 	// import { open } from './ContextMenu.svelte';
 	import type { MenuItem } from '$lib/tutorial';
 	import { forcefocus } from '@sveltejs/site-kit/actions';
+	import * as context from './context.js';
+
 
 	interface Props {
 		name: string;
 		icon?: string;
 		depth?: number;
 		onclick?: (e: MouseEvent) => void;
+		sticky?: boolean;
+
 	}
 
-	let { name, icon = '', depth = 0, onclick }: Props = $props();
+	let { name, icon = '', depth = 0, onclick, sticky = false }: Props = $props();
+
+	const { stickyHeights } = context.get();
+
+
+	let li : HTMLElement | undefined
+
+
+	onMount(() => {
+        if (li) {
+            // Dynamically measure the height of the header
+            const height = li.getBoundingClientRect().height;
+            $stickyHeights[depth] = height; // Store height in the shared array
+        }
+    });
+
+    // Calculate the cumulative offset for the current depth
+    let topOffset = $derived($stickyHeights
+        .slice(0, depth) // Sum up heights of previous headers
+        .reduce((sum, height) => sum + (height || 0), 0));
+
+		// style="top: {topOffset}px;
 </script>
 
-<li style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
-	<button {onclick} class="name">{name}</button>
+<li bind:this={li}   class=" top-[{topOffset}] z-[{100-depth}] "
+style:--depth={depth} style:--icon="url(&quot;{icon}&quot;)">
+	<button {onclick} class="name {sticky ? 'sticky' : '' }">{name} -- {topOffset}</button>
 </li>
 
 <style>
@@ -53,6 +81,16 @@
 		overflow: hidden;
 		line-height: 1;
 	}
+
+	.sticky {
+	    /* background-color: var(--bg-color); */
+	  /* opacity: 1; */
+	  /* background-color: black; */
+    position: sticky;
+    /* padding: 8px; */
+    /* border-bottom: 1px solid #ddd; */
+}
+
 
 	/*
 	:focus-visible {

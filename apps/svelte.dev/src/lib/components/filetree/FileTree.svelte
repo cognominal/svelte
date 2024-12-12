@@ -12,16 +12,20 @@
 		mobile?: boolean;
 	}
 
+	let headerHeights = $state([]); // Array to store dynamic heights
+
 	let { fileOrFolder, mobile = false }: Props = $props();
 
 	const collapsed = writable({} as Record<string, boolean>);
+	const stickyHeights = writable([]);
+
 
 	afterNavigate(() => {
 		collapsed.set({});
 	});
 
 	context.set({
-		collapsed
+		collapsed, stickyHeights
 	});
 </script>
 
@@ -43,9 +47,10 @@
 	}}
 >
 	{#if fileOrFolder.type === 'folder'}
-		<Folder prefix="" folder={fileOrFolder} />
+		<Folder 
+		prefix="" folder={fileOrFolder} />
 	{:else}
-		<File  file={fileOrFolder} />
+		<File file={fileOrFolder} />
 	{/if}
 </ul>
 

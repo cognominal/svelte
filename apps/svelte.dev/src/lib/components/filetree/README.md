@@ -5,6 +5,8 @@ The route to acess this experiment is /RouteExplorer.
 
 Goals : 
   * support sticky headers. Current experiment : https://svelte.dev/playground/c8dcf3712f4f42b58735c337e6380a5e?version=5.11.0
+  * interactive filtering
+  * ignore with .gitignore 
   * use chokidar to watch for changes in the visible parts of the filtetree
   * make sure the sticky parts does not occupy all the filetree pane
   * vertical line of alignment like vscode

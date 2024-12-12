@@ -5,7 +5,7 @@ import type { IFolder, IFile, IItem } from '$lib/components/filetree/types';
 
 const rootDir = '/Users/cog/b'
 
-const ignoreArray = [ 'node_modules', '.git']
+const ignoreArray = [ 'node_modules', '.git', '.svelte-kit', '.vercel']
 const ignoreMap = new Map<string, boolean>()
 ignoreArray.forEach(key => { ignoreMap.set(key, true)});
 // not yet used

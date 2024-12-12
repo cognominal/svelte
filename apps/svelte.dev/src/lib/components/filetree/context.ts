@@ -1,8 +1,10 @@
 import { setContext, getContext } from 'svelte';
+import type { Writable } from 'svelte/store';
 
 
 type FileTreeContext = {
-    collapsed: import('svelte/store').Writable<Record<string,boolean>> 
+    collapsed: Writable<Record<string,boolean>>
+	stickyHeights: Writable<number[]>
 }
 
 const key = {};

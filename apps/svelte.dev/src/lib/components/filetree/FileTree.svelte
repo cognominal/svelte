@@ -34,7 +34,7 @@
 
 <input type="text" placeholder="filter" />
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<ul class="border border-red-500 font-[var(--sk-font-ui-small)] flex-1 overflow-y-auto overflow-x-hidden py-4 bg-[var(--sk-bg-3)] list-none m-0">
+<ul class="border border-red-500 font-[var(--sk-font-ui-small)] flex-1 overflow-y-auto overflow-x-hidden py-4 bg-[var(--sk-bg-3)] list-none m-0
 	class:mobile
 	onkeydown={(e : KeyboardEvent) => {
 		if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
@@ -47,7 +47,7 @@
 
 			lis[focused + d]?.querySelector('button')?.focus();
 		}
-	}}
+	}}"
 >
 	{#if fileOrFolder.type === 'folder'}
 		<Folder prefix="" folder={fileOrFolder} />

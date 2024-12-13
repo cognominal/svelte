@@ -18,29 +18,29 @@
 
 	const collapsed = writable({} as Record<string, boolean>);
 	const stickyHeights = writable([]);
-	const filters = writable<string>("");
+	const filter = writable<string>('');
 	// const filters = writable<string[]>([]);
-
 
 	afterNavigate(() => {
 		collapsed.set({});
 	});
 
 	context.set({
-		collapsed, stickyHeights
+		collapsed,
+		stickyHeights,
+		filter
 	});
 </script>
 
-
-<input type="text" placeholder="filter"/>
+<input type="text" placeholder="filter" />
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<ul
-	class="filetree"
+<ul class="border border-red-500 font-[var(--sk-font-ui-small)] flex-1 overflow-y-auto overflow-x-hidden py-4 bg-[var(--sk-bg-3)] list-none m-0">
 	class:mobile
-	onkeydown={(e) => {
+	onkeydown={(e : KeyboardEvent) => {
 		if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
 			e.preventDefault();
-			const lis = Array.from(e.currentTarget.querySelectorAll('li'));
+			const el = e.currentTarget as HTMLElement
+			const lis = Array.from(el.querySelectorAll('li'));
 			const focused = lis.findIndex((li) => li.contains( (e.target as HTMLElement)));
 
 			const d = e.key === 'ArrowUp' ? -1 : +1;
@@ -50,24 +50,13 @@
 	}}
 >
 	{#if fileOrFolder.type === 'folder'}
-		<Folder 
-		prefix="" folder={fileOrFolder} />
+		<Folder prefix="" folder={fileOrFolder} />
 	{:else}
 		<File file={fileOrFolder} />
 	{/if}
 </ul>
 
 <style>
-	.filetree {
-		font: var(--sk-font-ui-small);
-		flex: 1;
-		overflow-y: auto;
-		overflow-x: hidden;
-		padding: 1rem 0rem;
-		margin: 0;
-		background: var(--sk-bg-3);
-		list-style: none;
-	}
 
 	.filetree.mobile {
 		height: 100%;

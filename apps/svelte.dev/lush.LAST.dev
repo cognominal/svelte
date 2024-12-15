@@ -1,0 +1,6 @@
+# LAST : documentation of existing LAST node types.
+
+LASTs are enriched [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) are
+the new reference representation of programs. 
+
+svelte susy adds some node types to the vanilla ts susy. lush susy will add some more.

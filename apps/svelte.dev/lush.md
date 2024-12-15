@@ -1,41 +1,51 @@
-# Lush : Proof of concept 
+# Lush : Proof of concept
 
-Lush is the editor to edit LASTS (lushed asts) using susies (susy for
-surface syntax), rich surface representations of program. 
+Lush is the editor to edit LASTS (lushed asts) using susies (susy for surface
+syntax), rich surface representations of program.
 
-LASTs are enriched
-[AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)  are the new
-reference representation of programs.
-Lush will also denote the ecosystem based on LASTs.
+## companion docs
+
+- [plan](./lush.plans.md)
+- [branches](./branches.md) feature branches
+- [susyr](./lush.susyr.md) rules based language to unparse LAST to susies
+- [lush.svelte.dev](./lush.svelte.dev.md) doc about the layout/implementation of
+  `svelte.dev`, specific or not to the lush project
+- [LAST](./lush.LAST.dev) documentation of existing LAST node types.
+
+## blurb
+
+LASTs are enriched [AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree) are
+the new reference representation of programs. Lush will also denote the
+ecosystem based on LASTs.
 
 We distinguish vanilla, poor, rich and posh susies. Vanilla susies are the
 susies that comes with the defintion of traditional complangs (computer
-languages). They are usual poor, leading to verbose programs. But raku is a
-rich susie. But poor and rich susies are based on unicode strings.
-
+languages). They are usual poor, leading to verbose programs. But raku is a rich
+susie. But poor and rich susies are based on unicode strings.
 
 Posh susies are not poor. They use various
 [typefaces](https://en.wikipedia.org/wiki/Typeface) of possibly many
 [fonts](https://en.wikipedia.org/wiki/Font). In LASTs, symbols have unique ids,
-so the change of a symbol name appear in one place of the AST even it may
-affect the susies in many places. Or for a given symbol, a user can choose his
-own name in his susies, for the purpose of
+so the change of a symbol name appear in one place of the AST even it may affect
+the susies in many places. Or for a given symbol, a user can choose his own name
+in his susies, for the purpose of
 [localisation](https://fr.wikipedia.org/wiki/Internationalisation_et_localisation).
 
-rich and posh susies takes a while to learn because many expression are huffed. Huffed
-is the huffmanisation of huffmanisation. It use a computer analogy [huffman
-coding](https://en.wikipedia.org/wiki/Huffman_coding) to describe common
-expressions that are short by design like pronouns, article, common verbs.
-In raku many common pairs are huffed. For sake of learning the editor should
-provide a way to unhuff an expression and access the doc about that expression
+rich and posh susies takes a while to learn because many expression are huffed.
+Huffed is the huffmanisation of huffmanisation. It use a computer analogy
+[huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) to describe
+common expressions that are short by design like pronouns, article, common
+verbs. In raku many common pairs are huffed. For sake of learning the editor
+should provide a way to unhuff an expression and access the doc about that
+expression
 
-In raku  `:a`is huffed :a(True) 
+In raku `:a`is huffed :a(True)
 
-
-LAST nodes have unique ids (luis), that are stable hooks for literate programming. As the AST codes 
-evolves and moves around, the literate is capable to still refer to it.
-Structural edition preserve the luis. So traditional edition is not allowed beyond expression 
-so as not to use the luis at granularity coarser than expression  
+LAST nodes have unique ids (luis), that are stable hooks for literate
+programming. As the AST codes evolves and moves around, the literate is capable
+to still refer to it. Structural edition preserve the luis. So traditional
+edition is not allowed beyond expression so as not to use the luis at
+granularity coarser than expression
 
 ## blurb
 
@@ -272,18 +282,17 @@ While a beautifier is here to enforce agreed upon convention, unparsers
 
 Grit is not implemented in this Proof of Concept release.
 
-
-
 There are many complementary views of programming.
 
-One with a mathemacal bent would want to formally specify a program and
-prove its correctness. But, if possible, that would way be orders of magnitude more dificult than to write a 
-well behaved program. Nevertheless, functional practice.
+One with a mathemacal bent would want to formally specify a program and prove
+its correctness. But, if possible, that would way be orders of magnitude more
+dificult than to write a well behaved program. Nevertheless, functional
+practice.
 
-There is the logistic view that deals with organizing and managing the developmenent and production of software environments,
-and team of programmers writing and documenting source code. Git, vite, container like docker
+There is the logistic view that deals with organizing and managing the
+developmenent and production of software environments, and team of programmers
+writing and documenting source code. Git, vite, container like docker
 
 Larry Wall has championned the linguistic view.
 
-Lush deals with syntax more than semantics so is mostly agnostic about the 
-
+Lush deals with syntax more than semantics so is mostly agnostic about the

@@ -1,4 +1,11 @@
-# svelte.dev
+# Lush
+
+the `svelte.dev` side is used as a starting point to develop [lush](./lush.md).
+Lush is mostly a TBD project.
+[branches](./branches.md) describes the features as they are developped in (surprise), feature branches.
+
+below is the doc of the original `svelte.dev` site.
+## svelte.dev
 
 This is the app behind [svelte.dev](https://svelte.dev), the official Svelte site.
 

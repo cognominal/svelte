@@ -60,6 +60,11 @@
 
 <div class="page">
 	<h1>Documentation</h1>
+
+	<p>
+		this is the doc of the lush project that uses a fork of the omnisite `svelte.dev` as a spring board.
+	</p>
+
 	<p>
 		Head to the <a href="/docs/svelte">Svelte</a> or <a href="/docs/kit">SvelteKit</a> reference docs,
 		or choose your adventure:

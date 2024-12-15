@@ -1,3 +1,5 @@
+# branches
+
 We are working on the apps/svelte.dev site and the packages/ they used.
 Extending playground is the best way to bootstrap what I want to do.
 
@@ -6,6 +8,8 @@ The long term goals of the project will be described in [lush](./lush.md)
 Lush has branched is many sub projects that are git branches. New branches names
 are prefixed by `lush-`. Also they should have a distinctive aspect as an app so
 we can distinguish them in the browser.
+
+## branch list
 
 - lush is the main branch for all stuff lush related
 - better-ast view streamlines the view in the AST view of the playground
@@ -17,6 +21,28 @@ we can distinguish them in the browser.
   components. It should eventually be the equivalent of the vscode explorer. For
   the time being I will forget about sticky headers. They work on the tw
   playgound but I failed to get them to work on thwe lushed svelte.dev
-- lush-view-components not really a lush subprojects but useful on its own. It
+- lush-route-explorer is not really a lush subproject but useful on its own. It
   will show the hierarchy of components/layout for a given route. The filetree
-  will display the available rout and to select one.
+  will display the available route and to select one. I started lush-filetree subproject
+  of route-explorer in the main branch. So there is a `route explorer` in the main bar menu.
+  Let us clean that. 
+
+## worktrees
+
+This will not appear on the repo but I am using git worktrees
+[\[1\]](https://git-scm.com/docs/git-worktree)
+[\[2\]](https://www.youtube.com/watch?v=s4BTvj1ZVLM) from the confort of the
+vscode gitlen extension. The command "gitlens: show worktrees view" is the
+starting point here.
+
+Worktrees a good way to avoid the mess of
+[stashes](https://git-scm.com/docs/git-stash)
+
+I can now switch from branches to branches, so the flurry of new branches. Until
+now my project was not organized and I bundled everything in the main lush
+branch.
+
+## grit
+
+Also eventually, the lush project will support grit, a git that support LASTs so I need to have an up to date
+knowledge of git.

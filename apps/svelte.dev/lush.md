@@ -1,7 +1,31 @@
-# Lush : Proof of concept
+# Lush : 
 
-Lush is the editor to edit LASTS (lushed asts) using susies (susy for surface
-syntax), rich surface representations of program.
+CLIR : computer literacy redesigned
+
+Note : adapting svelte.dev will help for CLIR which should be easier to
+implement than grit.
+
+Programs with CLIR documenation are CLIRed.
+CLIRed program have programmed documentation tied to a program with lids.
+
+Lush is the editor to edit LASTS (lushed ASTs) using susies, that are `su`rface
+`sy` representations of programs. Design of posh susies, meaning susie
+involving various typefaces and font weights, is paramount to legible programs.
+Good susie design involve hushing, design consice syntax for common expression.
+Posh design could be decoupled from the design of program semantic. Designer of
+languages should provide a vanilla susie to which program AST could be unparsed
+to. But eventually for a given language good posh susies will emerge.
+
+But LASTs (Lushy AST) nodes with unique persistent lids (LAST ids) is what will
+make better tools. Lids make reliable tracking of code possible as code
+subtrees moves and change. Lid persistence is possible by enforcing structural
+editing for structural entities larger than expressions. Cut and paste will be
+possible only for susies corresponding to whole subtrees.
+
+take away : syntax units larger than expression are structurally edited to preserve tids.
+LASTs are unparsed as susies.
+
+As a result
 
 ## companion docs
 

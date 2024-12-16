@@ -59,6 +59,16 @@ Leads me to understand the marked site-kit module heavily used in the doc parts 
 [lezer](https://github.com/observablehq/lezer/pkgs/npm/lezer). 
 susies relies on unparsing.
 
+### regex
+
+Does not really belong here because that belong to another repo.
+Deno supports FFI and deno should be more node compatible than bun 
+so usable from svelte.
+We want to support raku style regex to avoid being stuck in pure
+structural editing. So a rust regex module will be adapted and called using FII.
+Probably not much activity there for a while but should think it early
+and its places in the great scheme of things
+
 
 ## worktrees
 

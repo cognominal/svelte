@@ -27,24 +27,38 @@ one panel from the other. Like setting the selection on the source panel
 when cliking on the ast tree. Or opening the a related subtree when clicking on the
 source pane. This will make the development on the lush-unparse branch easier.
 
-### lush-unparse will use a new pane in the playground to unparse the AST as a posh
-  susy. We will first focus on a pure DOM susy. Also the unparser will initially
-  be regular ts code. It will eventually use its own susie.
+### lush-unparse 
 
-### lush-filetree not really a lush subproject but useful for the branch lush-view
-  components. It should eventually be the equivalent of the vscode explorer. For
-  the time being I will forget about sticky headers. They work on the tw
-  playgound but I failed to get them to work on thwe lushed svelte.dev
-### lush-route-explorer is not really a lush subproject but useful on its own. It
-  will show the hierarchy of components/layout for a given route. The filetree
-  will display the available route and to select one. I started lush-filetree subproject
-  of route-explorer in the main branch. So there is a `route explorer` in the main bar menu.
-  Let us clean that.
+will use a new pane in the playground to unparse the AST as a posh
+susy. We will first focus on a pure DOM susy. Also the unparser will initially
+be regular ts code. It will eventually use its own susie.
+
+### lush-filetree 
+
+not really a lush subproject but useful for the branch lush-view
+components. It should eventually be the equivalent of the vscode explorer. For
+the time being I will forget about sticky headers. They work on the tw
+playgound but I failed to get them to work on thwe lushed svelte.dev
+
+### lush-route-explorer
+
+is not really a lush subproject but useful on its own. It will show the
+hierarchy of components/layout for a given route. The filetree will display the
+available route and to select one. I started lush-filetree subproject of
+route-explorer in the main branch. So there is a `route explorer` in the main
+bar menu. Let us clean that.
 
 ### lush-doc
 
-Probably where literate doc will be experimented.
-Leads me to understand the marked module heavily used in the doc parts of `svelte.dev`.
+Probably where literate doc will be experimented. A key part is the
+rendering of susies. It will rely on unparsing. But rendering or susies
+will have to coexist with the existing system of doc rendering.
+
+Leads me to understand the marked site-kit module heavily used in the doc parts of `svelte.dev`. It relies on the [eponymous](https://marked.js.org/) module,
+[shikijs](https://github.com/shikijs/shiki) which relies on
+[lezer](https://github.com/observablehq/lezer/pkgs/npm/lezer). 
+susies relies on unparsing.
+
 
 ## worktrees
 

@@ -267,13 +267,15 @@ with git as a fallbakck option.
 
 ## grit
 
-grit will initially a wrapper to git.
+grit will initially a wrapper to git. You can go wild with experimental posh
+susies because, grit can include git diffs using the vanilla susie of the used
+language as long there is an unparser for that vanilla susy.
 
-## parsing and unparsing
+### parsing and unparsing
 
 Beautifiers are very much a thing. They format source according to configurable
 conventions. They can be used over and over during the development circle. More
-importantly, a beautifier is called before commiting to enforece compliance to
+importantly, a beautifier is called before commiting to enforce compliance to
 team shared norms.
 
 With A3R2 there are no beautifier but unparser.
@@ -282,7 +284,7 @@ While a beautifier is here to enforce agreed upon convention, unparsers
 
 Grit is not implemented in this Proof of Concept release.
 
-There are many complementary views of programming.
+## complementary views of programming.
 
 One with a mathemacal bent would want to formally specify a program and prove
 its correctness. But, if possible, that would way be orders of magnitude more

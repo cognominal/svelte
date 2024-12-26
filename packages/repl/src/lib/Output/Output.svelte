@@ -33,7 +33,15 @@
 		workspace
 	}: Props = $props();
 
-	let view: 'result' | 'js' | 'css' | 'ast' = $state('result');
+	let view: 'result' | 'js' | 'css' | 'ast' | 'leste' = $state('result');
+
+	const leste: File = {
+		type: 'file',
+		name: 'leste.js',
+		basename: 'leste.js',
+		contents: '',
+		text: true
+	};
 
 	const js: File = {
 		type: 'file',
@@ -56,6 +64,10 @@
 	});
 
 	const css_workspace = new Workspace([css], {
+		readonly: true
+	});
+
+	const leste_workspace = new Workspace([leste], {
 		readonly: true
 	});
 
@@ -190,6 +202,7 @@
 		<button aria-current={view === 'js'} onclick={() => (view = 'js')}>JS output</button>
 		<button aria-current={view === 'css'} onclick={() => (view = 'css')}>CSS output</button>
 		<button aria-current={view === 'ast'} onclick={() => (view = 'ast')}>AST output</button>
+		<button aria-current={view === 'leste'} onclick={() => (view = 'leste')}>Leste output</button>
 	{/if}
 </div>
 
@@ -226,6 +239,11 @@
 <!-- css output -->
 <div class="tab-content" class:visible={!is_markdown && view === 'css'}>
 	<Editor workspace={css_workspace} />
+</div>
+
+<!-- lest output -->
+<div class="tab-content" class:visible={!is_markdown && view === 'leste'}>
+	<Editor workspace={leste_workspace} />
 </div>
 
 <!-- ast output -->

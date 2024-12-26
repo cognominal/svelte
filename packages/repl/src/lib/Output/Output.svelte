@@ -8,6 +8,10 @@
 	import { Editor, Workspace, type File } from 'editor';
 	import { tick, untrack } from 'svelte';
 	import { decode, type SourceMapSegment } from '@jridgewell/sourcemap-codec';
+	import { unparse } from '../unparse';
+	import type { CompileResult } from 'svelte/compiler';
+
+	type Ast = CompileResult['ast'];
 
 	interface Props {
 		status: string | null;
@@ -241,10 +245,12 @@
 	<Editor workspace={css_workspace} />
 </div>
 
-<!-- lest output -->
-<div class="tab-content" class:visible={!is_markdown && view === 'leste'}>
-	<Editor workspace={leste_workspace} />
-</div>
+<!-- leste output -->
+{#if current?.result}
+	<div class="tab-content" class:visible={!is_markdown && view === 'leste'}>
+		<Editor workspace={leste_workspace} {unparse} ast={current.result.ast} />
+	</div>
+{/if}
 
 <!-- ast output -->
 {#if current?.result}
@@ -292,10 +298,6 @@
 		&[aria-current='true'] {
 			border-bottom: 1px solid var(--sk-fg-accent);
 		}
-	}
-
-	div[slot] {
-		height: 100%;
 	}
 
 	.tab-content {

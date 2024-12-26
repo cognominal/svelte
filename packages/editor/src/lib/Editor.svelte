@@ -2,15 +2,22 @@
 	import { BROWSER } from 'esm-env';
 	import { setDiagnostics } from '@codemirror/lint';
 	import { EditorView } from '@codemirror/view';
+	import { EditorState } from '@codemirror/state';
 	import { Workspace, type File } from './Workspace.svelte.js';
+	import { onMount } from 'svelte';
+	import type { CompileResult } from 'svelte/compiler';
+	type Ast = CompileResult['ast'];
+
 	import './codemirror.css';
 
 	interface Props {
 		workspace: Workspace;
 		autocomplete_filter?: (file: File) => boolean;
+		unparse?: (editorView: EditorView, ast: Ast) => void;
+		ast?: Ast;
 	}
 
-	let { workspace, autocomplete_filter = () => true }: Props = $props();
+	let { workspace, autocomplete_filter = () => true, unparse, ast }: Props = $props();
 
 	let container: HTMLDivElement;
 
@@ -37,6 +44,14 @@
 		const transaction = setDiagnostics(editor_view.state, workspace.diagnostics);
 		editor_view.dispatch(transaction);
 	});
+
+	// use by unparse to add content to the editor. Probably the wrong place to do this.
+    onMount(() => {
+		if (unparse) {
+			unparse(editor_view, ast);
+		}
+	})
+
 </script>
 
 <svelte:window

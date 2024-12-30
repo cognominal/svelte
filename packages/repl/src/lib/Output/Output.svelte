@@ -100,6 +100,26 @@
 		});
 	});
 
+	let lastnow = 0;
+
+	$effect(() => {
+		// effect called too many times. Why. debunce it
+		const now = Date.now();
+		if (now - lastnow < 1000) {
+			return;
+		}
+		lastnow = now;
+
+		if (view === 'leste' && current?.result) {
+			const currentSnap = $state.snapshot(current);
+			console.log('compiled_result ast', currentSnap.result.ast);
+
+			const unparsed = unparse(currentSnap.result.ast);
+			leste.contents = unparsed.map((ds) => ds.text).join('');
+			leste_workspace.update_file(leste);
+		}
+	});
+
 	$effect(() => {
 		if (markdown) return;
 

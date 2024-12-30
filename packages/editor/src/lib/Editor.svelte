@@ -44,14 +44,6 @@
 		const transaction = setDiagnostics(editor_view.state, workspace.diagnostics);
 		editor_view.dispatch(transaction);
 	});
-
-	// use by unparse to add content to the editor. Probably the wrong place to do this.
-    onMount(() => {
-		if (unparse) {
-			unparse(editor_view, ast);
-		}
-	})
-
 </script>
 
 <svelte:window
